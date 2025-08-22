@@ -1,0 +1,62 @@
+package com.excelr.studentmanagement.service;
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.excelr.studentmanagement.entity.Student;
+import com.excelr.studentmanagement.exception.StudentNotFoundException;
+import com.excelr.studentmanagement.studentrepository.StudentRepository;
+
+@Service
+public class StudentImplementation implements StudentService {
+     @Autowired
+     private StudentRepository studentRepository;
+	@Override
+	public List<Student> getAllStudent() {
+		
+		return studentRepository.findAll();
+	}
+
+	@Override
+	public Student getStudentById(Long id) {
+	
+		return studentRepository.findById(id)
+				.orElseThrow(()-> new StudentNotFoundException("Student not found with id"+id));
+		
+	
+	}
+
+	@Override
+    public Student updateStudentById(Long id, Student student) {
+        Student existingStudent = studentRepository.findById(id)
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + id));
+
+        // update fields
+        existingStudent.setName(student.getName());
+        existingStudent.setEmail(student.getEmail());
+        existingStudent.setPhoneNo(student.getPhoneNo());
+        existingStudent.setRollNo(student.getRollNo());
+        existingStudent.setCourse(student.getCourse());
+        existingStudent.setYear(student.getYear());
+
+        return studentRepository.save(existingStudent);
+    }
+	@Override
+	public Student saveStudent(Student student) {
+	    return studentRepository.save(student);
+	}
+
+
+	 @Override
+	    public String deleteStudent(Long id) {
+	        if (!studentRepository.existsById(id)) {
+	            throw new StudentNotFoundException("Student not found with id " + id);
+	        }
+	        studentRepository.deleteById(id);
+	        return "Deleted Successfully by Id " + id;
+	}
+	
+}

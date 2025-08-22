@@ -1,0 +1,7 @@
+package com.excelr.studentmanagement.exception;
+
+public class StudentNotFoundException {
+	 public StudentNotFoundException(String message) {
+	        super();
+	    }
+}

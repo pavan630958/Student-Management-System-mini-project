@@ -1,0 +1,25 @@
+body {
+      background-color: #f8f9fa;
+    }
+.card {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+table td, table th {
+      vertical-align: middle !important;
+}
+
+.main-header {
+      background-color: #343a40;
+      color: white;
+      padding: 10px 0;
+      font-size: 26px;
+      border-bottom: 2px solid #007bff;
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      z-index: 1000;
+}

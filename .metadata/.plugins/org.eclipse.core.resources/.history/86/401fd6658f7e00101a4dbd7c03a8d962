@@ -1,0 +1,5 @@
+package com.excelr.studentrepository;
+
+public interface StudentRepository {
+
+}

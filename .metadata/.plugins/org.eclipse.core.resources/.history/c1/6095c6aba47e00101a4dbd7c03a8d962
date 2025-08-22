@@ -1,0 +1,6 @@
+spring.application.name=Sts-Backend-Springboot
+spring.datasource.url=jdbc:mysql://localhost:3306/pavan
+spring.datasource.username=root
+spring.datasource.password=Admin@123
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+

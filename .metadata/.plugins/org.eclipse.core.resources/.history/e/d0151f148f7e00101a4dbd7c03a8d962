@@ -1,0 +1,5 @@
+package com.excelr.studentmanagement.entity;
+
+public class Student {
+
+}

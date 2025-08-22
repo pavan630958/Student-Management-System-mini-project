@@ -1,0 +1,27 @@
+package com.excelr.studentmanagement.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import lombok.Data;
+@Entity
+@Data
+@Table(name="Student_Management_System_mini")
+public class Student {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
+	private Long id;
+	private String rollNo;
+	private String name;
+	@NotBlank(message="Email is mandatory")
+	private String email;
+	@Pattern(regexp="(^$|[0-9]{10})", message="Phone number must be 10 digits")
+	private String phoneNo;
+	private String course;
+	private int year;
+}

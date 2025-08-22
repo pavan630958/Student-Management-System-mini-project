@@ -1,0 +1,62 @@
+package com.excelr.studentmanagement.restcontroller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.excelr.studentmanagement.entity.Student;
+import com.excelr.studentmanagement.service.StudentService;
+
+import jakarta.validation.Valid;
+@RestController
+@CrossOrigin(origins = "http://127.0.0.1:5500")
+@RequestMapping("/students") 
+public class StudentRestController {
+	@Autowired
+	private StudentService services;
+	//save student details
+	@PostMapping("/add")
+	public ResponseEntity<String> addStudent(@Valid @RequestBody Student student) {
+		services.saveStudent(student);
+		return new ResponseEntity<>("Student added successfully", HttpStatus.CREATED);
+	}
+	//get all student details
+	@GetMapping("/getall")
+	public ResponseEntity<List<Student>> retriveAllStudents(){
+		List<Student> allrecords=services.getAllStudent();
+		return new ResponseEntity<>(allrecords, HttpStatus.OK);
+		
+	}
+	
+	//update student details
+	@PutMapping("/update/{id}")
+	public ResponseEntity<String> updateStudentById(@PathVariable Long id, @Valid @RequestBody Student student) {
+		services.updateStudentById(id, student);
+		 return new ResponseEntity<>("Student updated successfully", HttpStatus.OK);
+	}
+	//get the data by id
+	@GetMapping("/{id}")
+	public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
+	    Student student = services.getStudentById(id);
+	    return new ResponseEntity<>(student, HttpStatus.OK);
+	}
+
+	// Delete a record based on id
+	@DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteStudentRecord(@PathVariable Long id) {
+        String message= services.deleteStudent(id);
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+	
+}

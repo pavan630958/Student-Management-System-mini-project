@@ -1,0 +1,22 @@
+package com.excelr.studentmanagement.restcontroller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.excelr.studentmanagement.entity.Student;
+import com.excelr.studentmanagement.service.StudentService;
+
+public class StudentRestController {
+	@Autowired
+	private StudentService services;
+	
+	public Student addStudent() {
+		return services.saveStudent(student);
+	}
+	
+	public List<Student> getAllStudents(){
+		return services.getAllStudent();
+	}
+	
+}

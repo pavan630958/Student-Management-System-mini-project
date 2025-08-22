@@ -1,0 +1,14 @@
+package com.excelr.studentmanagement.service;
+
+import java.util.List;
+
+import com.excelr.studentmanagement.entity.Student;
+
+public interface StudentService {
+	List<Student> getAllStudent();
+	Student getStudentById(Long id);
+	Student updateStudentById(Long id,Student student);
+	Student saveStudent(Student student);
+	String deleteStudent(Long id);
+	
+}

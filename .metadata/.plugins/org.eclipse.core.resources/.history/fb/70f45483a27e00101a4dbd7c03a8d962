@@ -1,0 +1,50 @@
+package com.excelr.studentmanagement.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.excelr.studentmanagement.entity.Student;
+import com.excelr.studentmanagement.studentrepository.StudentRepository;
+
+@Service
+public class StudentImplementation implements StudentService {
+     @Autowired
+     private StudentRepository studentRepository;
+	@Override
+	public List<Student> getAllStudent() {
+		
+		return studentRepository.findAll();
+	}
+
+	@Override
+	public Student getStudentById(Long id) {
+	
+		return studentRepository.findById(id)
+				.orElseThrow(()->new RuntimeException("Student not found with id"+id));
+	}
+
+	@Override
+	public Student updateStudentById(Long id, Student student) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Student saveStudent(Student student) {
+		// TODO Auto-generated method stub
+		return studentRepository.save(student);
+	}
+
+	@Override
+	public String deleteStudent(Long id) {
+		if(studentRepository.existsById(id)) {
+			studentRepository.deleteById(id);
+			return "Book Record Deleted with Id: "+id;
+		}
+		return "Book Record Not Found with Id"+id;
+	}
+	
+}
