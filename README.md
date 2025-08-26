@@ -60,7 +60,7 @@ student-management-system/
 ## ⚙️ Configuration
 ----------------------
 Edit `src/main/resources/application.properties`:
-```properties
+properties
 spring.application.name=Sts-Backend-Springboot
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 
